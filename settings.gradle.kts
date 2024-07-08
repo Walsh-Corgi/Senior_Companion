@@ -17,8 +17,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+
 }
+
+
+
 
 rootProject.name = "Senior Companion"
 include(":app")
- 

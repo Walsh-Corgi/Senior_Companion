@@ -15,7 +15,7 @@
         android:background="@drawable/circle_button"
         android:text="登录"
         android:textSize="70sp"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:elevation="4dp"
         android:gravity="center" />
 
