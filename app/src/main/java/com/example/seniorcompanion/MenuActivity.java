@@ -1,21 +1,22 @@
 package com.example.seniorcompanion;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.media.MediaRecorder;
-import android.widget.EditText;
+
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -71,7 +72,17 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        Button btnVoiceAnnouncements = findViewById(R.id.voice_broadcast_button);
+        btnVoiceAnnouncements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
     }
+
 
 
 
