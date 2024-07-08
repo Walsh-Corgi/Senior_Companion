@@ -1,83 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3E5FC"
-    tools:context=".WeatherActivity">
+    android:background="@drawable/shape_gradient"
+    android:padding="16dp">
 
-    <!-- Emergency Button -->
-    <Button
-        android:id="@+id/btn_emergency"
+    <!-- Header -->
+    <TextView
+        android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/red_button"
-        android:text="一键呼救"
+        android:text="17"
+        android:textSize="100sp"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:padding="10dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        tools:ignore="HardcodedText" />
 
-    <!-- Voice Report Button -->
-    <ImageButton
-        android:id="@+id/btn_voice_report"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/circle_button"
-        android:src="@android:drawable/ic_media_play"
-        android:padding="10dp" />
-
-    <!-- Weather Report Title -->
     <TextView
-        android:id="@+id/tv_weather_title"
+        android:id="@+id/weatherTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_emergency"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="天气预报"
-        android:textColor="@android:color/black"
+        android:text="Sunny"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textColor="@android:color/white"
+        android:layout_below="@id/dateTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/tv_weather_title_english"
-        android:layout_width="wrap_content"
+    <!-- Details -->
+    <LinearLayout
+        android:id="@+id/detailsLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_weather_title"
-        android:layout_centerHorizontal="true"
-        android:text="Weather"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="italic" />
+        android:orientation="vertical"
+        android:layout_below="@id/weatherTextView"
+        android:layout_marginTop="20dp">
 
-    <!-- Weather Report Frame -->
-    <FrameLayout
-        android:id="@+id/fl_weather_report"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_below="@id/tv_weather_title_english"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/white"
-        android:elevation="4dp"
-        android:padding="8dp">
-        <!-- Weather data will be dynamically added here -->
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
-    <!-- Return Button -->
-    <Button
-        android:id="@+id/btn_return"
-        android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tempHighTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="24°"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/tempLowTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="11°"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/humidityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Humidity: 63%"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/windTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Wind: 5 m/s"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/uvIndexTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="UV Index: 2"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/pressureTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pressure: 764 mmHg"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Footer -->
+    <LinearLayout
+        android:id="@+id/footerLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fl_weather_report"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="返回"
-        android:onClick="onReturnClick"/>
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/day1TempTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="17°"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/day2TempTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="18°"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/day3TempTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="19°"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/day4TempTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="21°"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/day5TempTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="22°"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
 </RelativeLayout>

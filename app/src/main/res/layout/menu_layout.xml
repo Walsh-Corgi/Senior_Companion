@@ -1,122 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4CAF50"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
-    <!-- Emergency Button -->
+    <!-- 一键呼救按钮 -->
     <Button
-        android:id="@+id/btn_emergency"
-        android:layout_width="wrap_content"
+        android:id="@+id/emergency_call_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/red_button"
         android:text="一键呼救"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:padding="10dp" />
+        android:background="@drawable/rounded_rectangle"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="16dp"
+        tools:ignore="HardcodedText" />
 
-    <!-- Voice Report Button -->
+    <!-- 语音播报按钮 -->
     <Button
-        android:id="@+id/btn_voice_report"
-        android:layout_width="wrap_content"
+        android:id="@+id/voice_broadcast_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_emergency"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/circle_button_1"
-        android:text="点击进行语音播报"
-        android:textColor="@android:color/black"
-        android:textSize="12sp"
-        android:drawableLeft="@android:drawable/ic_media_play"
-        android:padding="10dp" />
+        android:text="语音播报"
+        android:background="@drawable/rounded_rectangle"
+        android:layout_below="@id/emergency_call_button"
+        android:layout_marginBottom="16dp"
+        tools:ignore="HardcodedText" />
 
-    <!-- Instructions Text -->
-    <TextView
-        android:id="@+id/tv_instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_voice_report"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="点击下列图标"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tv_instructions_english"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_instructions"
-        android:layout_centerHorizontal="true"
-        android:text="CLICK ON THE FOLLOWING ICONS"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="italic" />
-
-    <!-- Icon Buttons Grid -->
+    <!-- 主体按钮区域 -->
     <GridLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_instructions_english"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:rowCount="2"
+        android:layout_below="@id/voice_broadcast_button"
         android:columnCount="2"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
+        android:rowCount="2"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center">
 
-        <!-- Health Button -->
+        <!-- 健康按钮 -->
         <Button
-            android:id="@+id/btn_health"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/rounded_rectangle_1"
+            android:id="@+id/health_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:text="健康"
-            android:textSize="18sp"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
 
-            android:gravity="center"
-            android:layout_margin="10dp" />
-
-        <!-- Schedule Button -->
+        <!-- 日程按钮 -->
         <Button
-            android:id="@+id/btn_schedule"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/rounded_rectangle_1"
+            android:id="@+id/schedule_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:text="日程"
-            android:textSize="18sp"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
 
-            android:gravity="center"
-            android:layout_margin="10dp" />
-
-        <!-- Weather Button -->
+        <!-- 新闻按钮 -->
         <Button
-            android:id="@+id/btn_weather"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/rounded_rectangle_1"
-            android:text="天气"
-            android:textSize="18sp"
-
-            android:gravity="center"
-            android:layout_margin="10dp" />
-
-        <!-- News Button -->
-        <Button
-            android:id="@+id/btn_news"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/rounded_rectangle_1"
+            android:id="@+id/news_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:text="新闻"
-            android:textSize="18sp"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
 
-            android:gravity="center"
-            android:layout_margin="10dp" />
+        <!-- 天气按钮 -->
+        <Button
+            android:id="@+id/weather_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="天气"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
     </GridLayout>
+
+    <!-- 底部导航栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="@drawable/rounded_rectangle">
+
+        <!-- Home按钮 -->
+        <Button
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Home"
+            android:background="@drawable/rounded_rectangle_1"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
+
+        <!-- 健康按钮 -->
+        <Button
+            android:id="@+id/nav_health_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="健康"
+            android:background="@drawable/rounded_rectangle_1"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
+
+        <!-- 日程按钮 -->
+        <Button
+            android:id="@+id/nav_schedule_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="日程"
+            android:background="@drawable/rounded_rectangle_1"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
+
+        <!-- 语音按钮 -->
+        <Button
+            android:id="@+id/nav_voice_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="语音"
+            android:background="@drawable/rounded_rectangle_1"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
+
+        <!-- 更多按钮 -->
+        <Button
+            android:id="@+id/nav_more_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="更多"
+            android:background="@drawable/rounded_rectangle_1"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
 
 </RelativeLayout>

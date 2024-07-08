@@ -12,21 +12,30 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.media.MediaRecorder;
+import android.widget.EditText;
 
 public class MenuActivity extends AppCompatActivity {
 
     private static final int REQUEST_CALL_PHONE = 1;
-    private Button btnEmergency;
+    private EditText phoneNumberEditText;
+    private Button callButton;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private MediaRecorder mediaRecorder;
 
+    // 按钮有关互动
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_layout);
 
-        btnEmergency = findViewById(R.id.btn_emergency);
+        Button btnEmergency = findViewById(R.id.emergency_call_button);
         btnEmergency.setOnClickListener(view -> makeEmergencyCall());
 
-        Button schedulebutton = (Button) findViewById(R.id.btn_schedule);
+        Button schedulebutton = (Button) findViewById(R.id.schedule_button);
         schedulebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,7 +44,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        Button newsbutton = (Button) findViewById(R.id.btn_news);
+        Button newsbutton = (Button) findViewById(R.id.news_button);
         newsbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +53,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        Button weatherbutton = (Button) findViewById(R.id.btn_weather);
+        Button weatherbutton = (Button) findViewById(R.id.weather_button);
         weatherbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +62,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        Button healthbutton = (Button) findViewById(R.id.btn_health);
+        Button healthbutton = (Button) findViewById(R.id.health_button);
         healthbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,8 +71,9 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-
     }
+
+
 
     private void makeEmergencyCall() {
         String emergencyNumber = "112"; // 紧急号码，例如 112 或 911

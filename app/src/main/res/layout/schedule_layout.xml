@@ -1,104 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3CDE3"
-    tools:context=".ScheduleActivity">
+    android:background="@drawable/shape_gradient"
+    android:padding="16dp"
+    tools:context=".MainActivity">
 
-    <!-- Emergency Button -->
-    <Button
-        android:id="@+id/btn_emergency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/red_button"
-        android:text="一键呼救"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:padding="10dp" />
-
-    <!-- Voice Report Button -->
-    <Button
-        android:id="@+id/btn_voice_report"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/circle_button"
-        android:text="点击进行语音播报"
-        android:textColor="@android:color/black"
-        android:textSize="12sp"
-        android:drawableLeft="@android:drawable/ic_media_play"
-        android:padding="10dp" />
-
-    <!-- Schedule Title -->
+    <!-- 标题 -->
     <TextView
-        android:id="@+id/tv_schedule_title"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_emergency"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="日程管理"
-        android:textColor="@android:color/black"
+        android:text="日历"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:id="@+id/tv_schedule_title_english"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_schedule_title"
-        android:layout_centerHorizontal="true"
-        android:text="Schedule"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="italic" />
-
-    <!-- Date Input and Add Button -->
+    <!-- 月份选择 -->
     <LinearLayout
+        android:id="@+id/llMonthSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_schedule_title_english"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@id/tvTitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp">
 
-        <EditText
-            android:id="@+id/et_date"
+        <ImageButton
+            android:id="@+id/btnPrevMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="请选择日期"
-            android:inputType="date"
-            android:drawableRight="@android:drawable/ic_menu_my_calendar"
-            android:padding="10dp"
-            android:layout_marginEnd="10dp"/>
+            android:src="@drawable/rounded_rectangle"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/prev_month"/>
 
-        <Button
-            android:id="@+id/btn_add_schedule"
+        <TextView
+            android:id="@+id/tvMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_rectangle"
-            android:text="添加日程"
+            android:text="7月"
             android:textSize="18sp"
-            android:padding="10dp" />
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/btnNextMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rounded_rectangle"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/next_month"/>
     </LinearLayout>
 
-    <!-- Schedule List -->
-    <ListView
-        android:id="@+id/lv_schedule"
+    <!-- 日历视图 -->
+    <CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_date"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:color/white"
-        android:dividerHeight="1dp"
-        tools:ignore="NotSibling" />
+        android:layout_below="@id/llMonthSelector"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- 日期选择和日程 -->
+    <TextView
+        android:id="@+id/tvSelectedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7月9日"
+        android:textSize="18sp"
+        android:layout_below="@id/calendarView"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btnEditEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="编辑日程"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBaseline="@id/tvSelectedDate"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- 日程列表 -->
+    <LinearLayout
+        android:id="@+id/llEventList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/tvSelectedDate"
+        android:layout_marginBottom="16dp">
+
+        <!-- 日程项可以在代码中动态生成 -->
+
+    </LinearLayout>
+<!-- <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:padding="8dp">
+
+        <ImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_home"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="首页"/>
+
+        <ImageButton
+            android:id="@+id/nav_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_favorite"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="收藏"
+            android:layout_marginStart="16dp"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/nav_discover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_discover"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="发现"
+            android:layout_marginStart="16dp"/>
+
+        <ImageButton
+            android:id="@+id/nav_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="位置"
+            android:layout_marginStart="16dp"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/nav_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_calendar"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="日历"
+            android:layout_marginStart="16dp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>-->
+    <!-- 底部导航 -->
 
 </RelativeLayout>
