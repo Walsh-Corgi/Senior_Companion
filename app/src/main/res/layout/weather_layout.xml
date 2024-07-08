@@ -7,6 +7,16 @@
     android:padding="16dp">
 
     <!-- Header -->
+
+    <Button
+        android:id="@+id/voice_broadcast_button"
+        android:layout_width="387dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_rectangle"
+        android:text="语音播报"
+        tools:ignore="HardcodedText,UnknownId" />
+
     <TextView
         android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
