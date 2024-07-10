@@ -3,160 +3,190 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4CAF50"
+    android:background="@drawable/shape_gradient"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_emergency"
+    <!-- 顶部问候语 -->
+    <TextView
+        android:id="@+id/tv_greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="你好，Pixel Plan"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:padding="10dp"
-        android:text="一键呼救"
-        android:background="#FF0000"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:layout_alignParentStart="true" />
 
-    <Button
-        android:id="@+id/btn_voice_report"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/ic_play_circle"
-        android:contentDescription="点击进行语音播报"/>
-
-    <!--suppress AndroidUnresolvableTag -->
-    <ViewPager
-        android:id="@+id/viewPager"
+    <!-- 日期 -->
+    <TextView
+        android:id="@+id/tv_date"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true">
+        android:layout_height="wrap_content"
+        android:text="2023-04-19"
+        android:textSize="16sp"
+        android:layout_below="@id/tv_greeting"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentStart="true" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:padding="10dp"
-            android:elevation="4dp">
 
-            <ImageView
-                android:id="@+id/iv_heart_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/red_button"
-                android:layout_gravity="center"
-                tools:ignore="MissingConstraints" />
+    <!-- 体重目标 -->
+    <RelativeLayout
+        android:id="@+id/rl_weight_goal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_date"
+        android:layout_margin="16dp">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart_weight"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="16dp"
+            tools:ignore="MissingClass" />
+
+        <!-- 体重变化图 -->
+        <TextView
+            android:id="@+id/tv_weight_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <!-- 当前体重 -->
+        <TextView
+            android:id="@+id/tv_current_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="68 公斤"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/tv_weight_change"
+            android:layout_marginStart="200dp" />
+
+        <!-- 目标体重 -->
+        <TextView
+            android:id="@+id/tv_goal_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="58.0 公斤"
+            android:layout_below="@id/tv_current_weight"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <!-- 水和食物 -->
+    <LinearLayout
+        android:id="@+id/ll_water_food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/rl_weight_goal"
+        android:layout_margin="16dp">
+
+        <!-- 水 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_rectangle">
 
             <TextView
-                android:id="@+id/tv_heart_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="心率"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:layout_gravity="center"
-                tools:ignore="MissingConstraints" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:padding="10dp"
-            android:elevation="4dp">
-
-            <ImageView
-                android:id="@+id/iv_blood_pressure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_play_circle"
-                android:layout_gravity="center"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/tv_blood_pressure"
+                android:id="@+id/tv_water"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="血压"
-                android:textSize="20sp"
-                android:textColor="#000000"
+                android:textSize="18sp"
                 android:layout_gravity="center"
-                tools:ignore="MissingConstraints" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:padding="10dp"
-            android:elevation="4dp">
-
-            <ImageView
-                android:id="@+id/iv_blood_sugar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_foreground"
-                android:layout_gravity="center"
-                tools:ignore="MissingConstraints" />
+                android:layout_marginTop="8dp" />
 
             <TextView
-                android:id="@+id/tv_blood_sugar"
+                android:id="@+id/tv_water_intake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1790 / 2000 ml"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <!-- 食物 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/tv_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="血糖"
-                android:textSize="20sp"
-                android:textColor="#000000"
+                android:textSize="18sp"
                 android:layout_gravity="center"
-                tools:ignore="MissingConstraints" />
+                android:layout_marginTop="8dp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_food_intake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="720 / 1110 kcal"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+<!-- 心率 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_marginStart="16dp">
 
-    </ViewPager>
+            <TextView
+                android:id="@+id/tv_heart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="心率"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp" />
 
-    <ImageView
-        android:id="@+id/btn_generate_report"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/rounded_rectangle"
-        android:contentDescription="生成报告"
-        android:layout_alignParentTop="true"/>
+            <TextView
+                android:id="@+id/tv_heart_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="720 / 1110 kcal"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/ll_water_food"
+        android:layout_margin="16dp"
+        tools:ignore="MissingClass" />
 
     <Button
-        android:id="@+id/btn_start_test"
-        android:layout_width="wrap_content"
+        android:id="@+id/add_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/viewPager"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="开始检测"
-        android:background="#FFFFFF"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:backgroundTint="#000000"/>
+        android:layout_below="@+id/chart"
+        android:layout_marginTop="4dp"
+        android:text="添加数据" />
 
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/btn_start_test"
-        android:layout_below="@id/viewPager"
-        android:layout_marginTop="20dp"
-        android:text="退"
-        android:background="#FFFFFF"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:backgroundTint="#000000"/>
 
 </RelativeLayout>

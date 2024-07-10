@@ -37,7 +37,8 @@ public class MenuActivity extends AppCompatActivity {
         btnEmergency.setOnClickListener(view -> makeEmergencyCall());
 
         Button schedulebutton = (Button) findViewById(R.id.schedule_button);
-        schedulebutton.setOnClickListener(new View.OnClickListener() {
+        schedulebutton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this,ScheduleActivity.class);
@@ -82,8 +83,6 @@ public class MenuActivity extends AppCompatActivity {
 
 
     }
-
-
 
 
     private void makeEmergencyCall() {

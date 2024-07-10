@@ -8,4 +8,8 @@
     <string name="discover">发现</string>
     <string name="location">位置</string>
     <string name="calendar">日历</string>
+    <string name="app_name2">Senior Companion</string>
+    <string name="prev_month2">上个月</string>
+    <string name="next_month2">下个月</string>
+    <string name="voice_announcements">语音播报</string>
 </resources>

@@ -11,9 +11,12 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        mavenCentral()
+        maven{url = uri("https://www.jitpack.io")}
         google()
         mavenCentral()
     }
@@ -24,4 +27,8 @@ dependencyResolutionManagement {
 
 
 rootProject.name = "Senior Companion"
+//include(":app")
 include(":app")
+include(":library-xhttp2")
+
+

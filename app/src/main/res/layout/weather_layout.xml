@@ -86,7 +86,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Humidity: 63%"
+                android:text="湿度: 63%"
                 android:textSize="18sp"
                 android:textColor="@android:color/white"
                 tools:ignore="HardcodedText" />
@@ -95,7 +95,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Wind: 5 m/s"
+                android:text="风速: 5 m/s"
                 android:textSize="18sp"
                 android:textColor="@android:color/white"
                 tools:ignore="HardcodedText" />
@@ -111,7 +111,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="UV Index: 2"
+                android:text="UV : 2"
                 android:textSize="18sp"
                 android:textColor="@android:color/white"
                 tools:ignore="HardcodedText" />
@@ -120,7 +120,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Pressure: 764 mmHg"
+                android:text="气压: 764 mmHg"
                 android:textSize="18sp"
                 android:textColor="@android:color/white"
                 tools:ignore="HardcodedText" />

@@ -16,7 +16,7 @@ public class WeatherActivity extends AppCompatActivity {
 
 
     private TextToSpeech tts;
-    private TextView tvWeatherInfo;
+//    private TextView tvWeatherInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class WeatherActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                String text = tvWeatherInfo.getText().toString();
 //                startTTS(text);
-               startTTS("喝O泡果奶，把清凉抱抱，我要O泡，我要O泡，O泡果奶要要要");
+               startTTS("当前天气：晴 n温度：25°C n明天：晴，28°C n后天：多云，26°C n大后天：小雨，22°C");
             }
         });
 
