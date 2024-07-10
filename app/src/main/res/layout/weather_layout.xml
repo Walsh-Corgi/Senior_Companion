@@ -11,16 +11,20 @@
 
     <TextView
         android:id="@+id/tv_content"
-        android:layout_width="331dp"
-        android:layout_height="292dp"
+        android:layout_width="432dp"
+        android:layout_height="420dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="51dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="16dp"
         android:text="天气预报"
         android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#664085FD"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -35,26 +39,26 @@
         tools:ignore="HardcodedText,UnknownId" />
 
     <TextView
-        android:id="@+id/dateTextView"
+        android:id="@+id/tempTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="17"
-        android:textSize="100sp"
-        android:textColor="@android:color/white"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:text="17"
+        android:textColor="@android:color/white"
+        android:textSize="100sp"
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/weatherTextView"
+        android:id="@+id/typeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sunny"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
-        android:layout_below="@id/dateTextView"
+        android:layout_below="@id/tempTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
+        android:text="Sunny"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
         tools:ignore="HardcodedText" />
 
     <!-- Details -->
@@ -63,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/weatherTextView"
+        android:layout_below="@id/typeTextView"
         android:layout_marginTop="20dp">
 
         <LinearLayout
@@ -78,17 +82,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="24°"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
+
             <TextView
                 android:id="@+id/tempLowTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="11°"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
 
@@ -99,22 +106,25 @@
             android:layout_marginBottom="8dp">
 
             <TextView
-                android:id="@+id/humidityTextView"
+                android:id="@+id/fxTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Humidity: 63%"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
+
             <TextView
-                android:id="@+id/windTextView"
+                android:id="@+id/flTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Wind: 5 m/s"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
 
@@ -124,97 +134,44 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/uvIndexTextView"
+                android:id="@+id/humidityTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="UV Index: 2"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
+
             <TextView
-                android:id="@+id/pressureTextView"
+                android:id="@+id/qualityTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Pressure: 764 mmHg"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
     </LinearLayout>
 
     <!-- Footer -->
-    <LinearLayout
-        android:id="@+id/footerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp">
 
-        <TextView
-            android:id="@+id/day1TempTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="17°"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"/>
-        <TextView
-            android:id="@+id/day2TempTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="18°"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            tools:ignore="HardcodedText" />
-        <TextView
-            android:id="@+id/day3TempTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="19°"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            tools:ignore="HardcodedText" />
-        <TextView
-            android:id="@+id/day4TempTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="21°"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            tools:ignore="HardcodedText" />
-        <TextView
-            android:id="@+id/day5TempTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="22°"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            tools:ignore="HardcodedText" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/bt_search"
-        android:layout_width="117dp"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/noticeTextView"
+        android:layout_width="432dp"
+        android:layout_height="131dp"
+        android:layout_below="@+id/detailsLayout"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="268dp"
-        android:text="天气查询" />
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="0dp"
+        android:text="建议"
+        android:textColor="#95779FF0"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
 
 </RelativeLayout>

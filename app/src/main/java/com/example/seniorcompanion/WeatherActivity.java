@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,10 +24,19 @@ import java.util.Locale;
 public class WeatherActivity extends AppCompatActivity {
 
     private TextToSpeech tts;
-    private TextView tvWeatherInfo;
 
     private String cityName;
     private TextView tvContent;
+
+    private TextView temp;
+    private TextView type;
+    private TextView tempHigh;
+    private TextView tempLow;
+    private TextView fx;
+    private TextView fl;
+    private TextView humidity;
+    private TextView quality;
+    private TextView notice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,44 +55,38 @@ public class WeatherActivity extends AppCompatActivity {
 
 
         tvContent = findViewById(R.id.tv_content);
-        Button btSearch = findViewById(R.id.bt_search);
 
-        btSearch.setOnClickListener(new View.OnClickListener() {
+        temp=findViewById(R.id.tempTextView);
+        type=findViewById(R.id.typeTextView);
+        tempHigh=findViewById(R.id.tempHighTextView);
+        tempLow=findViewById(R.id.tempLowTextView);
+        fx=findViewById(R.id.fxTextView);
+        fl=findViewById(R.id.flTextView);
+        humidity=findViewById(R.id.humidityTextView);
+        quality=findViewById(R.id.qualityTextView);
+        notice=findViewById(R.id.noticeTextView);
 
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(WeatherActivity.this, "按钮点击", Toast.LENGTH_SHORT).show();
+        cityName = "北京";
+        String url = "http://t.weather.itboy.net/api/weather/city/101010100";
 
-                // 防止快速点击（保护接口）
-                if (DoubleClickHelper.isOnDoubleClick(3000)) {
-                    Toast.makeText(WeatherActivity.this, "查询太频繁，手别抖！", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        // Xhttp2 请求网络
+        XHttp.get(url)
+            .syncRequest(false) //异步请求
+            .execute(new CallBackProxy<Body<ResponseData>, ResponseData>(
+                    new SimpleCallBack<ResponseData>() {
+                        @Override
+                        public void onSuccess(ResponseData data) {
+                            // 处理 data
+                            dealWithData(data);
+                        }
 
-                cityName = "北京";
-
-                String url = "http://t.weather.itboy.net/api/weather/city/101010100";
-                // Xhttp2 请求网络
-                XHttp.get(url)
-                        .syncRequest(false) //异步请求
-                        .execute(new CallBackProxy<Body<ResponseData>, ResponseData>(
-                                new SimpleCallBack<ResponseData>() {
-                                    @Override
-                                    public void onSuccess(ResponseData data) {
-                                        // 处理 data
-                                        dealWithData(data);
-                                    }
-
-                                    @Override
-                                    public void onError(ApiException e) {
-                                        // 处理异常
-                                    }
-                                }
-                        ) {
-                        });//最后一定要有 {} 否则解析失败 作者：为中华之崛起而敲代码 https://www.bilibili.com/read/cv8476993?spm_id_from=333.999.0.0 出处：bilibili
-
-            }
-        });
+                        @Override
+                        public void onError(ApiException e) {
+                            // 处理异常
+                        }
+                    }
+            ) {
+            });//最后一定要有 {} 否则解析失败 作者：为中华之崛起而敲代码 https://www.bilibili.com/read/cv8476993?spm_id_from=333.999.0.0 出处：bilibili
 
     }
 
@@ -134,7 +136,18 @@ public class WeatherActivity extends AppCompatActivity {
         Forecast tomorrowForecast = data.getForecast().get(1);
         String tomorrow = buildForecastString(tomorrowForecast, "明天");
 
-        tvContent.setText(today + tomorrow);
+        tvContent.setText(tomorrow);
+
+        temp.setText(data.getWendu());
+        type.setText(todayForecast.getType());
+        tempHigh.setText(todayForecast.getHigh());
+        tempLow.setText(todayForecast.getLow());
+        fx.setText(todayForecast.getFx());
+        fl.setText(todayForecast.getFl());
+        humidity.setText("湿度："+data.getShidu());
+        quality.setText("空气质量："+data.getQuality());
+        notice.setText(data.getGanmao()+"\n"+todayForecast.getNotice());
+
     }
 
     private String buildForecastString(Forecast forecast, String day) {
