@@ -1,53 +1,92 @@
 package com.example.seniorcompanion;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class HealthActiviry extends AppCompatActivity {
 
-    List<String> dataList = new ArrayList<>();
-    List<String> dataList1 = new ArrayList<>();
-
-    private List<BarEntry> entries = new ArrayList<>();
-    private BarDataSet dataSet;
-    private BarData barData;
-    private EditText editText;
-    private BarChart barChart;
+    private Map<String, Float[]> dataMap = new HashMap<>(); // To store bloodSugar, bloodPressure, heartRate for each date
+    private List<Entry> bloodSugarEntries = new ArrayList<>();
+    private List<Entry> bloodPressureEntries = new ArrayList<>();
+    private List<Entry> heartRateEntries = new ArrayList<>();
+    private LineDataSet bloodSugarDataSet;
+    private LineDataSet bloodPressureDataSet;
+    private LineDataSet heartRateDataSet;
+    private LineData lineData;
+    private EditText editTextBloodSugar;
+    private EditText editTextBloodPressure;
+    private EditText editTextHeartRate;
+    private TextView tvBloodSugarValue;
+    private TextView tvBloodPressureValue;
+    private TextView tvHeartRateValue;
+    private TextView tvDate;
+    private LineChart lineChart;
+    private Calendar calendar;
+    private SimpleDateFormat sdf;
+    private static final int MAX_DAYS = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.health_layout);
 
-        barChart = (BarChart) findViewById(R.id.chart);
-        showBarChart(barChart, getBarChartData());
+        editTextBloodSugar = findViewById(R.id.edit_text_blood_sugar);
+        editTextBloodPressure = findViewById(R.id.edit_text_blood_pressure);
+        editTextHeartRate = findViewById(R.id.edit_text_heart_rate);
+        tvBloodSugarValue = findViewById(R.id.tv_blood_sugar_value);
+        tvBloodPressureValue = findViewById(R.id.tv_blood_pressure_value);
+        tvHeartRateValue = findViewById(R.id.tv_heart_rate_value);
+        tvDate = findViewById(R.id.tv_date);
+        lineChart = findViewById(R.id.chart);
 
-        PieChart mPieChartweight = (PieChart) findViewById(R.id.chart_weight);
-        showPieChart(mPieChartweight, getPieChartData());
+        calendar = Calendar.getInstance();
+        sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        tvDate.setText(sdf.format(calendar.getTime()));
 
-        Button btn_add = (Button)findViewById(R.id.add_button);
+        tvDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog();
+            }
+        });
+
+        showLineChart(lineChart);
+
+        Button btn_add = findViewById(R.id.add_button);
         btn_add.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
             @Override
             public void onClick(View view) {
                 addData();
@@ -55,164 +94,190 @@ public class HealthActiviry extends AppCompatActivity {
         });
     }
 
-    //派状图添加图表数据
-    private List<PieEntry> getPieChartData() {
-        //给刚才定义的dataList添加数据的方式，注意一下传递的参数是字符串哦
-        dataList.add("xxx");
-        dataList.add("yyy");
-        dataList.add("zzz");
+    private void showDatePickerDialog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        tvDate.setText(sdf.format(calendar.getTime()));
+                        loadDataForSelectedDate();
+                    }
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
 
-        List<PieEntry> mPie = new ArrayList<>();
-        for (String data : dataList) {
-            //下面这个PieEntry第一个参数主要要传递float类型的参数，表示百分比的
-            PieEntry pieEntry = new PieEntry(15F, data);
-            mPie.add(pieEntry);
+    private void loadDataForSelectedDate() {
+        String selectedDate = tvDate.getText().toString();
+        if (dataMap.containsKey(selectedDate)) {
+            Float[] values = dataMap.get(selectedDate);
+            tvBloodSugarValue.setText(values[0] != null ? String.format("%.1f mmol/L", values[0]) : "");
+            tvBloodPressureValue.setText(values[1] != null ? String.format("%.1f mmHg", values[1]) : "");
+            tvHeartRateValue.setText(values[2] != null ? String.format("%.1f bpm", values[2]) : "");
+        } else {
+            tvBloodSugarValue.setText("");
+            tvBloodPressureValue.setText("");
+            tvHeartRateValue.setText("");
         }
-        return mPie;
     }
 
-    //柱状
-    private List<BarEntry> getBarChartData() {
-        // 给 dataList 添加数据
-//        dataList1.add("xxx");
-//        dataList1.add("yyy");
-//        dataList1.add("zzz");
+    // Display line chart
+    private void showLineChart(LineChart lineChart) {
+        lineChart.setDrawGridBackground(false);
+        lineChart.setPinchZoom(false);
+        lineChart.setScaleEnabled(false);
+        lineChart.setDrawBorders(false);
 
-        List<BarEntry> entries = new ArrayList<>();
-        // 模拟数据，实际使用时根据需求设置具体的数值
-        entries.add(new BarEntry(0, 15)); // 第一个参数是x轴的位置，第二个参数是y轴的值
-        entries.add(new BarEntry(1, 25));
-        entries.add(new BarEntry(2, 10));
-        return entries;
-    }
-
-    // 显示柱状图
-    private void showBarChart(BarChart barChart, List<BarEntry> entries) {
-        BarDataSet dataSet = new BarDataSet(entries, "Label");
-
-        // 设置柱状图的颜色
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-
-        // 设置柱状图数据
-        BarData barData = new BarData(dataSet);
-
-        // 设置描述，我设置了不显示，你也可以试试让它显示
         Description description = new Description();
         description.setEnabled(false);
-        barChart.setDescription(description);
+        lineChart.setDescription(description);
 
-        // 设置柱状图的一些属性
-        barChart.setDrawValueAboveBar(true);
-        barChart.setPinchZoom(false);
-        barChart.setScaleEnabled(false);
-        barChart.setDrawBarShadow(false);
-        barChart.setDrawGridBackground(false);
-
-        // 设置X轴和Y轴
-        barChart.getXAxis().setEnabled(false); // 禁用X轴
-        barChart.getAxisLeft().setEnabled(true); // 启用Y轴
-        barChart.getAxisRight().setEnabled(false); // 禁用右侧Y轴
-
-        // 设置动画效果
-        barChart.animateY(1000);
-
-        // 显示图例
-        Legend legend = barChart.getLegend();
+        Legend legend = lineChart.getLegend();
         legend.setEnabled(true);
 
-        // 将数据设置给柱状图
-        barChart.setData(barData);
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setGranularity(1f);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-        // 更新柱状图视图
-        barChart.invalidate();
+        YAxis leftAxis = lineChart.getAxisLeft();
+        leftAxis.setDrawGridLines(true);
+        leftAxis.enableGridDashedLine(10f, 10f, 0f);
+        lineChart.getAxisRight().setEnabled(false);
+
+        lineChart.animateX(1000);
+
+        updateLineChart();
     }
 
-    //显示图表
-    private void showPieChart(PieChart pieChart, List<PieEntry> pieList) {
+    // Update line chart
+    private void updateLineChart() {
+        bloodSugarDataSet = new LineDataSet(bloodSugarEntries, "Blood Sugar");
+        bloodPressureDataSet = new LineDataSet(bloodPressureEntries, "Blood Pressure");
+        heartRateDataSet = new LineDataSet(heartRateEntries, "Heart Rate");
 
-        PieDataSet dataSet = new PieDataSet(pieList, "");
+        bloodSugarDataSet.setColor(Color.RED);
+        bloodPressureDataSet.setColor(Color.GREEN);
+        heartRateDataSet.setColor(Color.BLUE);
 
-        // 设置颜色list，让不同的块显示不同颜色
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-        int[] MATERIAL_COLORS = {
-                Color.rgb(200, 172, 255)
-        };
-        for (int c : MATERIAL_COLORS) {
-            colors.add(c);
-        }
-        for (int c : ColorTemplate.VORDIPLOM_COLORS) {
-            colors.add(c);
-        }
-        dataSet.setColors(colors);
-        PieData pieData = new PieData(dataSet);
+        bloodSugarDataSet.setLineWidth(2.5f);
+        bloodPressureDataSet.setLineWidth(2.5f);
+        heartRateDataSet.setLineWidth(2.5f);
 
-        // 设置描述，我设置了不显示，因为不好看，你也可以试试让它显示，真的不好看
-        Description description = new Description();
-        description.setEnabled(false);
-        pieChart.setDescription(description);
-        //设置半透明圆环的半径, 0为透明
-        pieChart.setTransparentCircleRadius(0f);
+        bloodSugarDataSet.setCircleRadius(4f);
+        bloodPressureDataSet.setCircleRadius(4f);
+        heartRateDataSet.setCircleRadius(4f);
 
-        //设置初始旋转角度
-        pieChart.setRotationAngle(-15);
-
-        //数据连接线距图形片内部边界的距离，为百分数
-        dataSet.setValueLinePart1OffsetPercentage(80f);
-
-        //设置连接线的颜色
-        dataSet.setValueLineColor(Color.LTGRAY);
-        // 连接线在饼状图外面
-        dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-
-        // 设置饼块之间的间隔
-        dataSet.setSliceSpace(1f);
-        dataSet.setHighlightEnabled(true);
-        // 显示图例
-        Legend legend = pieChart.getLegend();
-        legend.setEnabled(true);
-
-        // 和四周相隔一段距离,显示数据
-        pieChart.setExtraOffsets(26, 5, 26, 5);
-
-        // 设置pieChart图表是否可以手动旋转
-        pieChart.setRotationEnabled(true);
-        // 设置piecahrt图表点击Item高亮是否可用
-        pieChart.setHighlightPerTapEnabled(true);
-        // 设置pieChart图表展示动画效果，动画运行1.4秒结束
-        //  pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
-        //设置pieChart是否只显示饼图上百分比不显示文字
-        pieChart.setDrawEntryLabels(true);
-        //是否绘制PieChart内部中心文本
-        pieChart.setDrawCenterText(false);
-        // 绘制内容value，设置字体颜色大小
-        pieData.setDrawValues(true);
-        pieData.setValueFormatter(new PercentFormatter());
-        pieData.setValueTextSize(10f);
-        pieData.setValueTextColor(Color.DKGRAY);
-
-        pieChart.setData(pieData);
-        // 更新 piechart 视图
-        pieChart.postInvalidate();
+        lineData = new LineData(bloodSugarDataSet, bloodPressureDataSet, heartRateDataSet);
+        lineChart.setData(lineData);
+        updateXAxisLabels();
+        lineChart.invalidate();
     }
 
+    private void updateXAxisLabels() {
+        XAxis xAxis = lineChart.getXAxis();
+        List<String> dates = new ArrayList<>(dataMap.keySet());
+        Collections.sort(dates, new Comparator<String>() {
+            @Override
+            public int compare(String date1, String date2) {
+                try {
+                    return sdf.parse(date1).compareTo(sdf.parse(date2));
+                } catch (Exception e) {
+                    return 0;
+                }
+            }
+        });
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(dates));
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void addData() {
-        String entryString = editText.getText().toString().trim();
-        if (!entryString.isEmpty()) {
-            float value = Float.parseFloat(entryString);
-            entries.add(new BarEntry(entries.size(), value));
-            editText.getText().clear();
+        String bloodSugarString = editTextBloodSugar.getText().toString().trim();
+        String bloodPressureString = editTextBloodPressure.getText().toString().trim();
+        String heartRateString = editTextHeartRate.getText().toString().trim();
+        String selectedDate = tvDate.getText().toString();
 
-            // 重新设置数据源
-            dataSet = new BarDataSet(entries, "Label");
-            dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-            barData = new BarData(dataSet);
+        if (!bloodSugarString.isEmpty() || !bloodPressureString.isEmpty() || !heartRateString.isEmpty()) {
+            if (dataMap.size() < MAX_DAYS || dataMap.containsKey(selectedDate)) {
+                Float[] values = dataMap.getOrDefault(selectedDate, new Float[3]);
 
-            // 设置柱状图的数据
-            barChart.setData(barData);
-            barChart.invalidate();
+                if (!bloodSugarString.isEmpty()) {
+                    try {
+                        float bloodSugarValue = Float.parseFloat(bloodSugarString);
+                        values[0] = bloodSugarValue;
+                        tvBloodSugarValue.setText(String.format("%.1f mmol/L", bloodSugarValue));
+                        editTextBloodSugar.getText().clear();
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(this, "Please enter a valid blood sugar value", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if (!bloodPressureString.isEmpty()) {
+                    try {
+                        float bloodPressureValue = Float.parseFloat(bloodPressureString);
+                        values[1] = bloodPressureValue;
+                        tvBloodPressureValue.setText(String.format("%.1f mmHg", bloodPressureValue));
+                        editTextBloodPressure.getText().clear();
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(this, "Please enter a valid blood pressure value", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if (!heartRateString.isEmpty()) {
+                    try {
+                        float heartRateValue = Float.parseFloat(heartRateString);
+                        values[2] = heartRateValue;
+                        tvHeartRateValue.setText(String.format("%.1f bpm", heartRateValue));
+                        editTextHeartRate.getText().clear();
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(this, "Please enter a valid heart rate value", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                dataMap.put(selectedDate, values);
+                updateEntries();
+                updateLineChart();
+            } else {
+                Toast.makeText(this, "You can only record data for up to 7 days.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Input cannot be empty", Toast.LENGTH_SHORT).show();
         }
     }
 
-}
+    private void updateEntries() {
+        bloodSugarEntries.clear();
+        bloodPressureEntries.clear();
+        heartRateEntries.clear();
 
+        int dayIndex = 0;
+        List<String> dates = new ArrayList<>(dataMap.keySet());
+        Collections.sort(dates, new Comparator<String>() {
+            @Override
+            public int compare(String date1, String date2) {
+                try {
+                    return sdf.parse(date1).compareTo(sdf.parse(date2));
+                } catch (Exception e) {
+                    return 0;
+                }
+            }
+        });
+
+        for (String date : dates) {
+            Float[] values = dataMap.get(date);
+            if (values[0] != null) {
+                bloodSugarEntries.add(new Entry(dayIndex, values[0]));
+            }
+            if (values[1] != null) {
+                bloodPressureEntries.add(new Entry(dayIndex, values[1]));
+            }
+            if (values[2] != null) {
+                heartRateEntries.add(new Entry(dayIndex, values[2]));
+            }
+            dayIndex++;
+        }
+    }
+}
