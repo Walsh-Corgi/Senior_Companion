@@ -19,9 +19,10 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
 
-            android:hint="chehui"
-            tools:ignore="TouchTargetSizeCheck"
-            android:background="@drawable/navigationbar_backup" />
+            android:background="@drawable/navigationbar_backup"
+            android:hint="-"
+            android:textColorHint="#2196F3"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,7 +40,8 @@
             android:id="@+id/bt_save"
             android:layout_height="35dp"
             android:layout_width="35dp"
-            android:hint="baocun"
+            android:hint="-"
+            android:textColorHint="#2196F3"
             tools:ignore="TouchTargetSizeCheck"
             android:background="@drawable/navigationbar_save"
             android:layout_alignParentRight="true"
@@ -114,7 +116,8 @@
             android:id="@+id/btn_record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="jilu"
+            android:hint="-"
+            android:textColorHint="#2196F3"
             android:textColor="@color/white"
             tools:ignore="TouchTargetSizeCheck"
             android:background="@drawable/tabbar_record_start"

@@ -16,7 +16,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:hint="chehui"
+            android:hint="-"
+            android:textColorHint="@color/white"
             tools:ignore="TouchTargetSizeCheck"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
@@ -42,7 +43,8 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="6dp"
             android:background="@drawable/navigationbar_save"
-            android:hint="baocun"
+            android:hint="-"
+            android:textColorHint="@color/white"
             tools:ignore="TouchTargetSizeCheck" />
 
     </RelativeLayout>

@@ -18,7 +18,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="chehui"
+            android:hint="-"
+            android:textColorHint="#2196F3"
             tools:ignore="TouchTargetSizeCheck"
             android:background="@drawable/navigationbar_backup" />
 
@@ -39,7 +40,8 @@
             android:layout_height="48dp"
             android:layout_width="48dp"
             android:background="@drawable/navigationbar_save"
-            android:hint="baocun"
+            android:hint="-"
+            android:textColorHint="#2196F3"
             tools:ignore="TouchTargetSizeCheck"
             android:layout_alignParentRight="true"
             android:layout_margin="5dp"

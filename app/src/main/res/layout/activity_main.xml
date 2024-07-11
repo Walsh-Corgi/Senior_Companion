@@ -25,28 +25,30 @@
             android:layout_marginBottom="5dp"
             android:layout_toRightOf="@id/iv_icon"
             android:gravity="center_vertical"
-            android:text="记事本"
+            android:text="备忘录"
             android:textSize="20dp" />
+
         <Button
             android:id="@+id/bt_add"
-            android:layout_height="35dp"
             android:layout_width="35dp"
-            android:hint="tianjia"
-            tools:ignore="TouchTargetSizeCheck"
-            android:background="@drawable/navigationbar_add"
-            android:layout_toLeftOf="@+id/bt_setting"
+            android:layout_height="35dp"
             android:layout_margin="5dp"
-            />
+            android:layout_toLeftOf="@+id/bt_setting"
+            android:background="@drawable/navigationbar_add"
+            android:freezesText="false"
+            android:hint="i"
+            android:textColorHint="#00BCD4"
+            tools:ignore="TouchTargetSizeCheck" />
         <Button
             android:id="@+id/bt_setting"
             android:layout_height="35dp"
             android:layout_width="35dp"
-            android:hint="bshezhi"
+            android:hint="i"
             tools:ignore="TouchTargetSizeCheck"
             android:background="@drawable/navigationbar_setting"
             android:layout_alignParentRight="true"
             android:layout_margin="5dp"
-
+            android:textColorHint="@color/white"
             />
 
     </RelativeLayout>

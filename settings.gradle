@@ -6,6 +6,9 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
 
         maven { url =uri("https://www.jitpack.io") }
+       // maven {url=uri("com.google.code.gson:gson")}
+       // maven {url=uri("com.squareup.okhttp3:okhttp")}
+       // maven {url=uri( "com.squareup.okio:okio")}
     }
 }
 rootProject.name = "SeniorCompanion"
