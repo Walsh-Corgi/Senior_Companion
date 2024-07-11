@@ -67,7 +67,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_IS_CONTENT, data.getIs_content());
 
         try {
-            db.insertOrThrow(TABLE_NAME, null, values);
+            // 检查数据库中是否已存在相同的 uniqueKey
+            Cursor cursor = db.query(TABLE_NAME, new String[]{COLUMN_UNIQUE_KEY}, COLUMN_UNIQUE_KEY + " = ?", new String[]{data.getUniquekey()}, null, null, null);
+            if (cursor.getCount() > 0) {
+                // 如果存在，可以选择更新该记录，或者什么也不做
+                // 例如，使用 db.update() 方法来更新记录
+                cursor.close();
+                // 这里假设我们选择更新记录
+                db.update(TABLE_NAME, values, COLUMN_UNIQUE_KEY + " = ?", new String[]{data.getUniquekey()});
+            } else {
+                // 如果不存在，执行插入操作
+                db.insertOrThrow(TABLE_NAME, null, values);
+            }
+            cursor.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);

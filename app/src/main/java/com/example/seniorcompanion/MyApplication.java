@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.xuexiang.xhttp2.XHttpSDK;
 
+//XHttp2初始化
 public class MyApplication extends Application {
     @Override
     public void onCreate() {

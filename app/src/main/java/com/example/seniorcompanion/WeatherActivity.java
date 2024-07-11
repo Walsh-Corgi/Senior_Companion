@@ -71,8 +71,8 @@ public class WeatherActivity extends AppCompatActivity {
 
         // Xhttp2 请求网络
         XHttp.get(url)
-            .syncRequest(false) //异步请求
-            .execute(new CallBackProxy<Body<ResponseData>, ResponseData>(
+            .syncRequest(false) // 显式声明异步
+            .execute(new CallBackProxy<Body<ResponseData>, ResponseData>( // 自定义返回值
                     new SimpleCallBack<ResponseData>() {
                         @Override
                         public void onSuccess(ResponseData data) {
@@ -124,7 +124,7 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n") // 取消有关使用 setText 方法设置文本时不建议使用字符串文字的警告
     private void dealWithData(ResponseData data) {
         if (data == null) {
             Toast.makeText(WeatherActivity.this, "结果异常！", Toast.LENGTH_SHORT).show();
