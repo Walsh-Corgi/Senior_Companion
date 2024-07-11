@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,19 +34,19 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_layout);
 
-        Button btnEmergency = findViewById(R.id.emergency_call_button);
+        ImageButton btnEmergency = findViewById(R.id.helpbtn);
         btnEmergency.setOnClickListener(view -> makeEmergencyCall());
 
-        Button schedulebutton = (Button) findViewById(R.id.schedule_button);
+        ImageButton schedulebutton = findViewById(R.id.daliybtn);
         schedulebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this,ScheduleActivity.class);
+                Intent intent = new Intent(MenuActivity.this, MainActivity2.class);
                 startActivity(intent);
             }
         });
 
-        Button newsbutton = (Button) findViewById(R.id.news_button);
+        ImageButton newsbutton = findViewById(R.id.newbtn);
         newsbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +55,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        Button weatherbutton = (Button) findViewById(R.id.weather_button);
+        ImageButton weatherbutton = findViewById(R.id.weatherbtn);
         weatherbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +64,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        Button healthbutton = (Button) findViewById(R.id.health_button);
+        ImageButton healthbutton =  findViewById(R.id.healthbtn);
         healthbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +73,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        Button btnVoiceAnnouncements = findViewById(R.id.voice_broadcast_button);
+        ImageButton btnVoiceAnnouncements = findViewById(R.id.voice1);
         btnVoiceAnnouncements.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -32,65 +32,16 @@
         android:layout_alignParentStart="true" />
 
 
-    <!-- 体重目标 -->
-    <RelativeLayout
-        android:id="@+id/rl_weight_goal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_date"
-        android:layout_margin="16dp">
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/chart_weight"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_margin="16dp"
-            tools:ignore="MissingClass" />
-
-        <!-- 体重变化图 -->
-        <TextView
-            android:id="@+id/tv_weight_change"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
-
-        <!-- 当前体重 -->
-        <TextView
-            android:id="@+id/tv_current_weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="68 公斤"
-            android:textSize="18sp"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/tv_weight_change"
-            android:layout_marginStart="200dp" />
-
-        <!-- 目标体重 -->
-        <TextView
-            android:id="@+id/tv_goal_weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="58.0 公斤"
-            android:layout_below="@id/tv_current_weight"
-            android:textSize="18sp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-
     <!-- 水和食物 -->
     <LinearLayout
         android:id="@+id/ll_water_food"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/rl_weight_goal"
+        android:layout_below="@id/tv_date"
         android:layout_margin="16dp">
 
-        <!-- 水 -->
+        <!-- 血压 -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -99,7 +50,7 @@
             android:background="@drawable/rounded_rectangle">
 
             <TextView
-                android:id="@+id/tv_water"
+                android:id="@+id/tv_blood_pressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="血压"
@@ -108,16 +59,16 @@
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:id="@+id/tv_water_intake"
+                android:id="@+id/tv_blood_pressure_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1790 / 2000 ml"
+                android:text="120 / 80 mmHg"
                 android:textSize="16sp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp" />
         </LinearLayout>
 
-        <!-- 食物 -->
+        <!-- 血糖 -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -127,7 +78,7 @@
             android:layout_marginStart="16dp">
 
             <TextView
-                android:id="@+id/tv_food"
+                android:id="@+id/tv_blood_sugar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="血糖"
@@ -136,15 +87,16 @@
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:id="@+id/tv_food_intake"
+                android:id="@+id/tv_blood_sugar_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="720 / 1110 kcal"
+                android:text="5.6 mmol/L"
                 android:textSize="16sp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp" />
         </LinearLayout>
-<!-- 心率 -->
+
+        <!-- 心率 -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -154,7 +106,7 @@
             android:layout_marginStart="16dp">
 
             <TextView
-                android:id="@+id/tv_heart"
+                android:id="@+id/tv_heart_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="心率"
@@ -163,16 +115,18 @@
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:id="@+id/tv_heart_data"
+                android:id="@+id/tv_heart_rate_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="720 / 1110 kcal"
+                android:text="72 bpm"
                 android:textSize="16sp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp" />
         </LinearLayout>
     </LinearLayout>
-    <com.github.mikephil.charting.charts.BarChart
+
+    <!-- LineChart -->
+    <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -180,13 +134,88 @@
         android:layout_margin="16dp"
         tools:ignore="MissingClass" />
 
+    <!-- EditText for blood sugar input -->
+    <LinearLayout
+        android:id="@+id/ll_blood_sugar_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chart"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_text_blood_sugar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Enter blood sugar"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mmol/L"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- EditText for blood pressure input -->
+    <LinearLayout
+        android:id="@+id/ll_blood_pressure_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_blood_sugar_input"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_text_blood_pressure"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Enter blood pressure"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mmHg"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- EditText for heart rate input -->
+    <LinearLayout
+        android:id="@+id/ll_heart_rate_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_blood_pressure_input"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_text_heart_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Enter heart rate"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bpm"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Button for adding data -->
     <Button
         android:id="@+id/add_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chart"
+        android:layout_below="@id/ll_heart_rate_input"
         android:layout_marginTop="4dp"
         android:text="添加数据" />
-
 
 </RelativeLayout>

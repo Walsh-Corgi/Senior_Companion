@@ -32,9 +32,10 @@
             android:id="@+id/btnPrevMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            tools:ignore="TouchTargetSizeCheck"
             android:src="@drawable/rounded_rectangle"
             android:background="?attr/selectableItemBackground"
-            android:contentDescription="@string/prev_month"/>
+            android:contentDescription="@string/prev_month2"/>
 
         <TextView
             android:id="@+id/tvMonth"
@@ -50,9 +51,10 @@
             android:id="@+id/btnNextMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            tools:ignore="TouchTargetSizeCheck"
             android:src="@drawable/rounded_rectangle"
             android:background="?attr/selectableItemBackground"
-            android:contentDescription="@string/next_month"/>
+            android:contentDescription="@string/next_month2"/>
     </LinearLayout>
 
     <!-- 日历视图 -->

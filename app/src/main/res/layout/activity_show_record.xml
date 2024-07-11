@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/navigationbar_bg">
+
+        <Button
+            android:id="@+id/bt_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="chehui"
+            tools:ignore="TouchTargetSizeCheck"
+            android:background="@drawable/navigationbar_backup" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
+            android:text="查看录音"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/bt_save"
+            android:layout_height="48dp"
+            android:layout_width="48dp"
+            android:background="@drawable/navigationbar_save"
+            android:hint="baocun"
+            tools:ignore="TouchTargetSizeCheck"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_record_wave_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_margin="5dp"
+                android:background="@drawable/record_wave_left" />
+
+            <ImageView
+                android:id="@+id/iv_microphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:src="@drawable/record_microphone_icon" />
+
+            <ImageView
+                android:id="@+id/iv_record_wave_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_margin="5dp"
+                android:background="@drawable/record_wave_right" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_recordTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="00:00:00"
+            android:textColor="#499df7"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</RelativeLayout>

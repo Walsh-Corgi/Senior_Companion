@@ -1,0 +1,1085 @@
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources xmlns:tools=\"http://schemas.android.com/tools\">\r\n    <string name=\"app_name\">Senior Companion</string>\r\n    <string name=\"app_name1\" tools:ignore=\"DuplicateDefinition\">日历应用</string>\r\n    <string name=\"prev_month\">上个月</string>\r\n    <string name=\"next_month\">下个月</string>\r\n    <string name=\"home\">首页</string>\r\n    <string name=\"favorite\">收藏</string>\r\n    <string name=\"discover\">发现</string>\r\n    <string name=\"location\">位置</string>\r\n    <string name=\"calendar\">日历</string>\r\n    <string name=\"app_name2\">Senior Companion</string>\r\n    <string name=\"prev_month2\">上个月</string>\r\n    <string name=\"next_month2\">下个月</string>\r\n    <string name=\"voice_announcements\">语音播报</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ b/app/src/main/res/values/strings.xml	(date 1720602766000)
+@@ -1,13 +1,16 @@
+-<resources xmlns:tools="http://schemas.android.com/tools">
++<resources>
+     <string name="app_name">Senior Companion</string>
+-    <string name="app_name1" tools:ignore="DuplicateDefinition">日历应用</string>
+-    <string name="prev_month">上个月</string>
+-    <string name="next_month">下个月</string>
+-    <string name="home">首页</string>
+-    <string name="favorite">收藏</string>
+-    <string name="discover">发现</string>
+-    <string name="location">位置</string>
+-    <string name="calendar">日历</string>
++    <string name="hello_world">欢迎来的我的记事本</string>
++    <string name="action_settings">Settings</string>
++
++    <string name="track_line">画笔</string>
++    <string name="straight_line">Straight Line</string>
++    <string name="rectangle">Rectangle</string>
++    <string name="oval">Oval</string>
++    <string name="circle">Circle</string>
++    <string name="dots">Dots</string>
++    <string name="Eraser">橡皮擦</string>
++
+     <string name="app_name2">Senior Companion</string>
+     <string name="prev_month2">上个月</string>
+     <string name="next_month2">下个月</string>
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ /dev/null	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
+@@ -1,3 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: app/src/main/res/layout/activity_show_record.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_show_record.xml b/app/src/main/res/layout/activity_show_record.xml
+new file mode 100644
+--- /dev/null	(date 1720602766000)
++++ b/app/src/main/res/layout/activity_show_record.xml	(date 1720602766000)
+@@ -0,0 +1,102 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:background="@drawable/bg">
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:background="@drawable/navigationbar_bg">
++
++        <Button
++            android:id="@+id/bt_back"
++            android:layout_width="48dp"
++            android:layout_height="48dp"
++            android:layout_alignParentLeft="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:hint="chehui"
++            tools:ignore="TouchTargetSizeCheck"
++            android:background="@drawable/navigationbar_backup" />
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="35dp"
++            android:layout_centerHorizontal="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:gravity="center_vertical"
++            android:text="查看录音"
++            android:textSize="20dp" />
++
++        <Button
++            android:id="@+id/bt_save"
++            android:layout_height="48dp"
++            android:layout_width="48dp"
++            android:background="@drawable/navigationbar_save"
++            android:hint="baocun"
++            tools:ignore="TouchTargetSizeCheck"
++            android:layout_alignParentRight="true"
++            android:layout_margin="5dp"
++            />
++
++    </RelativeLayout>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:gravity="center"
++        android:orientation="vertical">
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_margin="5dp"
++            android:gravity="center"
++            android:orientation="horizontal">
++
++            <ImageView
++                android:id="@+id/iv_record_wave_left"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center"
++
++                android:layout_margin="5dp"
++                android:background="@drawable/record_wave_left" />
++
++            <ImageView
++                android:id="@+id/iv_microphone"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center"
++                android:layout_margin="5dp"
++                android:src="@drawable/record_microphone_icon" />
++
++            <ImageView
++                android:id="@+id/iv_record_wave_right"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center"
++
++                android:layout_margin="5dp"
++                android:background="@drawable/record_wave_right" />
++
++        </LinearLayout>
++
++        <TextView
++            android:id="@+id/tv_recordTime"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_margin="5dp"
++            android:gravity="center"
++            android:text="00:00:00"
++            android:textColor="#499df7"
++            android:textSize="20sp" />
++    </LinearLayout>
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/note_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/note_item.xml b/app/src/main/res/layout/note_item.xml
+new file mode 100644
+--- /dev/null	(date 1720602766000)
++++ b/app/src/main/res/layout/note_item.xml	(date 1720602766000)
+@@ -0,0 +1,33 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="80dp"
++    android:orientation="vertical"
++    android:background="@drawable/notes_item_bg" 
++    >
++   
++  	<TextView 
++        android:id="@+id/tv_note_id"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:visibility="gone"
++        />
++   <TextView 
++       android:id="@+id/tv_note_title"
++       android:layout_height="wrap_content"
++       android:layout_width="match_parent"
++       android:layout_margin="5dp"
++       android:textSize="20sp"
++       android:singleLine="true"
++       /> 
++    <TextView 
++       android:id="@+id/tv_note_time"
++       android:layout_height="wrap_content"
++       android:layout_width="match_parent"
++       android:layout_marginBottom="5dp"
++       android:layout_marginLeft="5dp"
++       /> 
++        
++   
++   
++</LinearLayout>
+Index: app/src/main/res/layout/activity_paint.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_paint.xml b/app/src/main/res/layout/activity_paint.xml
+new file mode 100644
+--- /dev/null	(date 1720602766000)
++++ b/app/src/main/res/layout/activity_paint.xml	(date 1720602766000)
+@@ -0,0 +1,67 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:tools="http://schemas.android.com/tools">
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:background="@drawable/navigationbar_bg">
++
++        <Button
++            android:id="@+id/bt_back"
++            android:layout_width="35dp"
++            android:layout_height="35dp"
++            android:hint="fanhui"
++            tools:ignore="TouchTargetSizeCheck"
++            android:layout_alignParentLeft="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:background="@drawable/navigationbar_backup" />
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="35dp"
++            android:layout_centerHorizontal="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:gravity="center_vertical"
++            android:text="绘画板"
++            android:textSize="20dp" />
++
++        <Button
++            android:id="@+id/bt_save"
++            android:layout_height="35dp"
++            android:layout_width="35dp"
++            android:hint="baocun"
++            tools:ignore="TouchTargetSizeCheck"
++            android:background="@drawable/navigationbar_save"
++            android:layout_alignParentRight="true"
++            android:layout_margin="5dp"
++            />
++
++    </RelativeLayout>
++
++    <com.example.seniorcompanion.PaintView
++        android:id="@+id/paint_layout"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_marginTop="48dp"
++        android:layout_marginBottom="48dp"
++        ></com.example.seniorcompanion.PaintView>
++
++    <GridView
++        android:id="@+id/paintBottomMenu"
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:numColumns="auto_fit"
++        android:background="@drawable/navigationbar_bg"
++        android:horizontalSpacing="10dp"
++        android:layout_alignParentBottom="true"
++        ></GridView>
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_show_picture.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_show_picture.xml b/app/src/main/res/layout/activity_show_picture.xml
+new file mode 100644
+--- /dev/null	(date 1720602766000)
++++ b/app/src/main/res/layout/activity_show_picture.xml	(date 1720602766000)
+@@ -0,0 +1,56 @@
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:orientation="vertical">
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:background="@drawable/navigationbar_bg"
++        android:id="@+id/rec">
++
++        <Button
++            android:id="@+id/bt_back"
++            android:layout_width="35dp"
++            android:layout_height="35dp"
++            android:hint="fanhui"
++            tools:ignore="TouchTargetSizeCheck"
++            android:layout_alignParentLeft="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:background="@drawable/navigationbar_backup" />
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="35dp"
++            android:layout_centerHorizontal="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:gravity="center_vertical"
++            android:text="查看图片"
++            android:textSize="20dp" />
++
++        <Button
++            android:id="@+id/bt_save"
++            android:layout_height="35dp"
++            android:layout_width="35dp"
++            android:hint="baocun"
++            tools:ignore="TouchTargetSizeCheck"
++            android:background="@drawable/navigationbar_save"
++            android:layout_alignParentRight="true"
++            android:layout_margin="5dp"
++            />
++
++    </RelativeLayout>
++    <ImageView
++        android:id="@+id/iv_showPic"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:scaleType="matrix"
++        />
++
++</LinearLayout>
+\ No newline at end of file
+Index: .idea/deploymentTargetSelector.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetSelector\">\r\n    <selectionStates>\r\n      <SelectionState runConfigName=\"app\">\r\n        <option name=\"selectionMode\" value=\"DROPDOWN\" />\r\n        <DropdownSelection timestamp=\"2024-07-08T02:22:21.397412500Z\">\r\n          <Target type=\"DEFAULT_BOOT\">\r\n            <handle>\r\n              <DeviceId pluginId=\"LocalEmulator\" identifier=\"path=C:\\Users\\Walsh\\.android\\avd\\Pixel_2_API_35.avd\" />\r\n            </handle>\r\n          </Target>\r\n        </DropdownSelection>\r\n        <DialogSelection />\r\n      </SelectionState>\r\n    </selectionStates>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetSelector.xml b/.idea/deploymentTargetSelector.xml
+--- a/.idea/deploymentTargetSelector.xml	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ b/.idea/deploymentTargetSelector.xml	(date 1720663970398)
+@@ -4,14 +4,6 @@
+     <selectionStates>
+       <SelectionState runConfigName="app">
+         <option name="selectionMode" value="DROPDOWN" />
+-        <DropdownSelection timestamp="2024-07-08T02:22:21.397412500Z">
+-          <Target type="DEFAULT_BOOT">
+-            <handle>
+-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Walsh\.android\avd\Pixel_2_API_35.avd" />
+-            </handle>
+-          </Target>
+-        </DropdownSelection>
+-        <DialogSelection />
+       </SelectionState>
+     </selectionStates>
+   </component>
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Project-wide Gradle settings.\r\n# IDE (e.g. Android Studio) users:\r\n# Gradle settings configured through the IDE *will override*\r\n# any settings specified in this file.\r\n# For more details on how to configure your build environment visit\r\n# http://www.gradle.org/docs/current/userguide/build_environment.html\r\n# Specifies the JVM arguments used for the daemon process.\r\n# The setting is particularly useful for tweaking memory settings.\r\norg.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8\r\n# When configured, Gradle will run in incubating parallel mode.\r\n# This option should only be used with decoupled projects. For more details, visit\r\n# https://developer.android.com/r/tools/gradle-multi-project-decoupled-projects\r\n# org.gradle.parallel=true\r\n# AndroidX package structure to make it clearer which packages are bundled with the\r\n# Android operating system, and which are packaged with your app's APK\r\n# https://developer.android.com/topic/libraries/support-library/androidx-rn\r\nandroid.useAndroidX=true\r\n# Enables namespacing of each library's R class so that its R class includes only the\r\n# resources declared in the library itself and none from the library's dependencies,\r\n# thereby reducing the size of the R class for that library\r\nandroid.nonTransitiveRClass=true
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/gradle.properties b/gradle.properties
+--- a/gradle.properties	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ b/gradle.properties	(date 1720602766000)
+@@ -18,4 +18,5 @@
+ # Enables namespacing of each library's R class so that its R class includes only the
+ # resources declared in the library itself and none from the library's dependencies,
+ # thereby reducing the size of the R class for that library
+-android.nonTransitiveRClass=true
+\ No newline at end of file
++android.nonTransitiveRClass=true
++android.nonFinalResIds=false
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_record.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_record.xml b/app/src/main/res/layout/activity_record.xml
+new file mode 100644
+--- /dev/null	(date 1720602766000)
++++ b/app/src/main/res/layout/activity_record.xml	(date 1720602766000)
+@@ -0,0 +1,125 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:background="@drawable/bg">
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:background="@drawable/navigationbar_bg">
++
++        <Button
++            android:id="@+id/bt_back"
++            android:layout_width="35dp"
++            android:layout_height="35dp"
++            android:layout_alignParentLeft="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++
++            android:hint="chehui"
++            tools:ignore="TouchTargetSizeCheck"
++            android:background="@drawable/navigationbar_backup" />
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="35dp"
++            android:layout_centerHorizontal="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:gravity="center_vertical"
++            android:text="录音"
++            android:textSize="20dp" />
++
++        <Button
++            android:id="@+id/bt_save"
++            android:layout_height="35dp"
++            android:layout_width="35dp"
++            android:hint="baocun"
++            tools:ignore="TouchTargetSizeCheck"
++            android:background="@drawable/navigationbar_save"
++            android:layout_alignParentRight="true"
++            android:layout_margin="5dp"
++            />
++
++    </RelativeLayout>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_centerInParent="true"
++        android:gravity="center"
++        android:orientation="vertical">
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_margin="5dp"
++            android:gravity="center"
++            android:orientation="horizontal">
++
++            <ImageView
++                android:id="@+id/iv_record_wave_left"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center"
++
++                android:layout_margin="5dp"
++                android:background="@drawable/record_wave_left" />
++
++            <ImageView
++                android:id="@+id/iv_microphone"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center"
++                android:layout_margin="5dp"
++                android:src="@drawable/record_microphone_icon" />
++
++            <ImageView
++                android:id="@+id/iv_record_wave_right"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center"
++
++                android:layout_margin="5dp"
++                android:background="@drawable/record_wave_right" />
++
++        </LinearLayout>
++
++        <TextView
++            android:id="@+id/tv_recordTime"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_margin="5dp"
++            android:gravity="center"
++            android:text="00:00:00"
++            android:textColor="#499df7"
++            android:textSize="20sp" />
++    </LinearLayout>
++
++
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:background="@drawable/navigationbar_bg"
++        android:layout_alignParentBottom="true"
++        android:gravity="center"
++        >
++        <Button
++            android:id="@+id/btn_record"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:hint="jilu"
++            android:textColor="@color/white"
++            tools:ignore="TouchTargetSizeCheck"
++            android:background="@drawable/tabbar_record_start"
++
++            />
++    </LinearLayout>
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <uses-permission\r\n        android:name=\"android.permission.CALL_PHONE\"\r\n        tools:ignore=\"PermissionImpliesUnsupportedChromeOsHardware\" />\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"\r\n        tools:ignore=\"CoarseFineLocation\" />\r\n    <uses-permission android:name=\"android.permission.RECORD_AUDIO\" />\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"\r\n        tools:ignore=\"ScopedStorage\" />\r\n    <!--确保在 AndroidManifest.xml 中添加写入外部存储的权限-->\r\n    <application\r\n        android:name=\"MyApplication\"\r\n        android:allowBackup=\"true\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:networkSecurityConfig=\"@xml/network_security_config\"\r\n        android:theme=\"@style/Theme.SeniorCompanion\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".HealthActiviry\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".WeatherActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".NewsActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ScheduleActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".MenuActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\"\r\n            android:theme=\"@style/Theme.SeniorCompanion\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ b/app/src/main/AndroidManifest.xml	(date 1720662876000)
+@@ -1,19 +1,22 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:tools="http://schemas.android.com/tools">
++    xmlns:tools="http://schemas.android.com/tools"
++    package="com.example.seniorcompanion"
++    tools:ignore="ExtraText,ScopedStorage,CoarseFineLocation,PermissionImpliesUnsupportedChromeOsHardware">
+ 
+-    <uses-permission
+-        android:name="android.permission.CALL_PHONE"
+-        tools:ignore="PermissionImpliesUnsupportedChromeOsHardware" />
+-    <uses-permission android:name="android.permission.INTERNET" />
+-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+-        tools:ignore="CoarseFineLocation" />
+-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+-        tools:ignore="ScopedStorage" />
+-    <!--确保在 AndroidManifest.xml 中添加写入外部存储的权限-->
++    <uses-permission android:name="android.permission.CALL_PHONE"/>
++    <uses-permission android:name="android.permission.INTERNET"/>
++    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
++    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
++    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
++    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
++    <uses-permission android:name="android.permission.CAMERA"/>
++
++    <uses-feature android:name="android.hardware.camera"/>
++    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
++
+     <application
+-        android:name="MyApplication"
++        android:name=".MyApplication"
+         android:allowBackup="true"
+         android:fullBackupContent="@xml/backup_rules"
+         android:icon="@mipmap/ic_launcher"
+@@ -23,31 +26,75 @@
+         android:networkSecurityConfig="@xml/network_security_config"
+         android:theme="@style/Theme.SeniorCompanion"
+         tools:targetApi="31">
++
++        <activity
++            android:name=".DoubleClickHelper"
++            android:exported="true"
++            tools:ignore="Instantiatable" />
++        <activity
++            android:name=".ShowRecord"
++            android:exported="true"/>
++        <activity
++            android:name=".ShowPicture"
++            android:exported="true"/>
++        <activity
++            android:name=".DatabaseOperation"
++            android:exported="true"
++            tools:ignore="Instantiatable" />
++        <activity
++            android:name=".GetCutBitmapLocation"
++            android:exported="true"
++            tools:ignore="Instantiatable" />
++        <activity
++            android:name=".LineEditText"
++            android:exported="true"
++            tools:ignore="Instantiatable" />
++        <activity
++            android:name=".HandWriteActivity"
++            android:exported="true"/>
++        <activity
++            android:name=".ActivityRecord"
++            android:exported="true"/>
++        <activity
++            android:name=".PaintActivity"
++            android:exported="true"/>
++        <activity
++            android:name=".AddActivity"
++            android:exported="true"/>
++        <activity
++            android:name=".TouchView"
++            android:exported="true"
++            tools:ignore="Instantiatable" />
++        <activity
++            android:name=".PaintView"
++            android:exported="true"
++            tools:ignore="Instantiatable" />
++        <activity
++            android:name=".MainActivity2"
++            android:exported="true"/>
+         <activity
+             android:name=".HealthActiviry"
+-            android:exported="false" />
++            android:exported="true"/>
+         <activity
+             android:name=".WeatherActivity"
+-            android:exported="false" />
++            android:exported="true"/>
+         <activity
+             android:name=".NewsActivity"
+-            android:exported="false" />
++            android:exported="true"/>
+         <activity
+             android:name=".ScheduleActivity"
+-            android:exported="false" />
++            android:exported="true"/>
+         <activity
+             android:name=".MenuActivity"
+-            android:exported="true" />
++            android:exported="true"/>
+         <activity
+             android:name=".MainActivity"
+             android:exported="true"
+             android:theme="@style/Theme.SeniorCompanion">
+             <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
+-
+-                <category android:name="android.intent.category.LAUNCHER" />
++                <action android:name="android.intent.action.MAIN"/>
++                <category android:name="android.intent.category.LAUNCHER"/>
+             </intent-filter>
+         </activity>
+     </application>
+-
+-</manifest>
+\ No newline at end of file
++</manifest>
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+--- a/.idea/vcs.xml	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ b/.idea/vcs.xml	(date 1720663960342)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/res/layout/item_button.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_button.xml b/app/src/main/res/layout/item_button.xml
+new file mode 100644
+--- /dev/null	(date 1720602766000)
++++ b/app/src/main/res/layout/item_button.xml	(date 1720602766000)
+@@ -0,0 +1,13 @@
++
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical" >
++    <ImageView
++        android:id="@+id/item_image"
++        android:layout_height="35dp"
++        android:layout_width="35dp"
++        android:layout_margin="5dp"
++        />
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_hand_write.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_hand_write.xml b/app/src/main/res/layout/activity_hand_write.xml
+new file mode 100644
+--- /dev/null	(date 1720602766000)
++++ b/app/src/main/res/layout/activity_hand_write.xml	(date 1720602766000)
+@@ -0,0 +1,103 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:background="@android:color/white">
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:background="@drawable/navigationbar_bg"
++        android:id="@+id/rec">
++
++        <Button
++            android:id="@+id/bt_back"
++            android:layout_width="35dp"
++            android:layout_height="35dp"
++            android:layout_alignParentLeft="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:hint="fanhui"
++            tools:ignore="TouchTargetSizeCheck"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:background="@drawable/navigationbar_backup" />
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="35dp"
++            android:layout_centerHorizontal="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:gravity="center_vertical"
++            android:text="写字板"
++            android:textSize="20dp" />
++
++        <Button
++            android:id="@+id/bt_save"
++            android:layout_height="35dp"
++            android:layout_width="35dp"
++            android:hint="baocun"
++            tools:ignore="TouchTargetSizeCheck"
++            android:background="@drawable/navigationbar_save"
++            android:layout_alignParentRight="true"
++            android:layout_margin="5dp"
++            />
++
++    </RelativeLayout>
++    <FrameLayout
++        android:layout_width="fill_parent"
++        android:layout_height="wrap_content"
++        android:id="@+id/finger_layout"
++        android:layout_below="@+id/rec"
++        >
++
++        <com.example.seniorcompanion.LineEditText
++            android:id="@+id/et_handwrite"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:scrollbars="vertical"
++            android:fadingEdge="vertical"
++            android:inputType="textMultiLine"
++            android:gravity="top"
++            android:textSize="20sp"
++            android:hint="shouxieban"
++            tools:ignore="TouchTargetSizeCheck"
++            android:layout_margin="5dp"
++            android:focusable="true"
++            android:lineSpacingExtra="10dp"
++            android:textColor="#00000000"
++            android:background="#00000000"
++            />
++
++
++    </FrameLayout>
++    <ImageView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:src="@drawable/line"
++        android:layout_above="@+id/paintBottomMenu"
++        />
++
++    <GridView
++        android:id="@+id/paintBottomMenu"
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:numColumns="auto_fit"
++        android:background="@drawable/navigationbar_bg"
++        android:horizontalSpacing="10dp"
++        android:layout_alignParentBottom="true"
++        ></GridView>
++
++    <com.example.seniorcompanion.TouchView
++        android:id="@+id/touch_view"
++        android:layout_width="fill_parent"
++        android:layout_height="wrap_content"
++        android:layout_alignParentTop="true"
++        android:layout_marginTop="44dp"
++        android:layout_marginBottom="44dp"
++        android:background="@android:color/transparent"></com.example.seniorcompanion.TouchView>
++
++</RelativeLayout>
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleJvm\" value=\"#GRADLE_LOCAL_JAVA_HOME\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n            <option value=\"$PROJECT_DIR$/library-xhttp2\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveExternalAnnotations\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ b/.idea/gradle.xml	(date 1720663970391)
+@@ -1,10 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleHome" value="D:/Java/Gradle/gradle-8.8" />
+         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+         <option name="modules">
+           <set>
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+new file mode 100644
+--- /dev/null	(date 1720602766000)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1720602766000)
+@@ -0,0 +1,63 @@
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="@drawable/main_bg"
++    >
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:background="@drawable/navigationbar_bg">
++        <ImageView
++            android:id="@+id/iv_icon"
++            android:layout_width="35dp"
++            android:layout_height="35dp"
++            android:src="@drawable/icon"
++            android:layout_margin="5dp"
++            android:layout_alignParentLeft="true"
++            />
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="35dp"
++            android:layout_margin="5dp"
++            android:layout_marginTop="5dp"
++            android:layout_marginBottom="5dp"
++            android:layout_toRightOf="@id/iv_icon"
++            android:gravity="center_vertical"
++            android:text="记事本"
++            android:textSize="20dp" />
++        <Button
++            android:id="@+id/bt_add"
++            android:layout_height="35dp"
++            android:layout_width="35dp"
++            android:hint="tianjia"
++            tools:ignore="TouchTargetSizeCheck"
++            android:background="@drawable/navigationbar_add"
++            android:layout_toLeftOf="@+id/bt_setting"
++            android:layout_margin="5dp"
++            />
++        <Button
++            android:id="@+id/bt_setting"
++            android:layout_height="35dp"
++            android:layout_width="35dp"
++            android:hint="bshezhi"
++            tools:ignore="TouchTargetSizeCheck"
++            android:background="@drawable/navigationbar_setting"
++            android:layout_alignParentRight="true"
++            android:layout_margin="5dp"
++
++            />
++
++    </RelativeLayout>
++
++    <ListView
++        android:id="@+id/lv_notes"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:padding="10dp"
++        android:layout_marginTop="44dp"
++
++        ></ListView>
++
++</RelativeLayout>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"jbr-17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n  <component name=\"VisualizationToolProject\">\r\n    <option name=\"state\">\r\n      <ProjectState>\r\n        <option name=\"scale\" value=\"0.08176771989752349\" />\r\n      </ProjectState>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ b/.idea/misc.xml	(date 1720663970381)
+@@ -1,16 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/build/classes" />
+-  </component>
+-  <component name="ProjectType">
+-    <option name="id" value="Android" />
+-  </component>
+-  <component name="VisualizationToolProject">
+-    <option name="state">
+-      <ProjectState>
+-        <option name="scale" value="0.08176771989752349" />
+-      </ProjectState>
+-    </option>
++    <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_add.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_add.xml b/app/src/main/res/layout/activity_add.xml
+new file mode 100644
+--- /dev/null	(date 1720602766000)
++++ b/app/src/main/res/layout/activity_add.xml	(date 1720602766000)
+@@ -0,0 +1,81 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:background="@drawable/bg">
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="45dp"
++        android:background="@drawable/navigationbar_bg">
++
++        <Button
++            android:id="@+id/bt_back"
++            android:layout_width="35dp"
++            android:layout_height="35dp"
++            android:layout_alignParentLeft="true"
++            android:layout_marginStart="5dp"
++            android:layout_marginTop="5dp"
++            android:hint="chehui"
++            tools:ignore="TouchTargetSizeCheck"
++            android:layout_marginEnd="5dp"
++            android:layout_marginBottom="5dp"
++            android:background="@drawable/navigationbar_backup" />
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="35dp"
++            android:text="新增记事"
++            android:layout_margin="5dp"
++            android:textSize="20dp"
++            android:gravity="center_vertical"
++            android:layout_centerHorizontal="true"
++            android:id="@+id/tv_title"
++            />
++
++        <Button
++            android:id="@+id/bt_save"
++            android:layout_width="35dp"
++            android:layout_height="35dp"
++            android:layout_alignParentRight="true"
++            android:layout_margin="5dp"
++            android:layout_marginStart="5dp"
++            android:layout_marginEnd="5dp"
++            android:layout_marginRight="6dp"
++            android:background="@drawable/navigationbar_save"
++            android:hint="baocun"
++            tools:ignore="TouchTargetSizeCheck" />
++
++    </RelativeLayout>
++
++    <com.example.seniorcompanion.LineEditText
++        android:id="@+id/et_note"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_marginStart="5dp"
++        android:layout_marginTop="45dp"
++        android:layout_marginEnd="5dp"
++        android:layout_marginBottom="5dp"
++        android:background="#00000000"
++        android:fadingEdge="vertical"
++        android:gravity="top"
++        android:hint="请输入内容"
++        android:inputType="textMultiLine"
++        android:lineSpacingExtra="10dp"
++        android:scrollbars="vertical"
++        android:textSize="20sp" />
++    <ScrollView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_alignParentBottom="true"
++        >
++        <GridView
++            android:id="@+id/bottomMenu"
++            android:layout_width="match_parent"
++            android:layout_height="45dp"
++            android:numColumns="auto_fit"
++            android:background="@drawable/navigationbar_bg"
++            android:horizontalSpacing="10dp"
++            ></GridView>
++
++    </ScrollView>
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/schedule_layout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@drawable/shape_gradient\"\r\n    android:padding=\"16dp\"\r\n    tools:context=\".MainActivity\">\r\n\r\n    <!-- 标题 -->\r\n    <TextView\r\n        android:id=\"@+id/tvTitle\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"日历\"\r\n        android:textSize=\"24sp\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_alignParentStart=\"true\"\r\n        android:layout_marginBottom=\"16dp\"/>\r\n\r\n    <!-- 月份选择 -->\r\n    <LinearLayout\r\n        android:id=\"@+id/llMonthSelector\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:layout_below=\"@id/tvTitle\"\r\n        android:layout_alignParentStart=\"true\"\r\n        android:layout_marginBottom=\"16dp\">\r\n\r\n        <ImageButton\r\n            android:id=\"@+id/btnPrevMonth\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@drawable/rounded_rectangle\"\r\n            android:background=\"?attr/selectableItemBackground\"\r\n            android:contentDescription=\"@string/prev_month\"/>\r\n\r\n        <TextView\r\n            android:id=\"@+id/tvMonth\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"7月\"\r\n            android:textSize=\"18sp\"\r\n            android:layout_gravity=\"center\"\r\n            android:layout_marginHorizontal=\"16dp\"\r\n            tools:ignore=\"HardcodedText\" />\r\n\r\n        <ImageButton\r\n            android:id=\"@+id/btnNextMonth\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@drawable/rounded_rectangle\"\r\n            android:background=\"?attr/selectableItemBackground\"\r\n            android:contentDescription=\"@string/next_month\"/>\r\n    </LinearLayout>\r\n\r\n    <!-- 日历视图 -->\r\n    <CalendarView\r\n        android:id=\"@+id/calendarView\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_below=\"@id/llMonthSelector\"\r\n        android:layout_marginBottom=\"16dp\"/>\r\n\r\n    <!-- 日期选择和日程 -->\r\n    <TextView\r\n        android:id=\"@+id/tvSelectedDate\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"7月9日\"\r\n        android:textSize=\"18sp\"\r\n        android:layout_below=\"@id/calendarView\"\r\n        android:layout_alignParentStart=\"true\"\r\n        android:layout_marginBottom=\"8dp\"/>\r\n\r\n    <Button\r\n        android:id=\"@+id/btnEditEvent\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"编辑日程\"\r\n        android:layout_alignParentEnd=\"true\"\r\n        android:layout_alignBaseline=\"@id/tvSelectedDate\"\r\n        android:layout_marginBottom=\"8dp\"/>\r\n\r\n    <!-- 日程列表 -->\r\n    <LinearLayout\r\n        android:id=\"@+id/llEventList\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"vertical\"\r\n        android:layout_below=\"@id/tvSelectedDate\"\r\n        android:layout_marginBottom=\"16dp\">\r\n\r\n        <!-- 日程项可以在代码中动态生成 -->\r\n\r\n    </LinearLayout>\r\n<!-- <LinearLayout\r\n        android:id=\"@+id/bottom_navigation\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:gravity=\"center\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:background=\"@color/white\"\r\n        android:padding=\"8dp\">\r\n\r\n        <ImageButton\r\n            android:id=\"@+id/nav_home\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@drawable/ic_home\"\r\n            android:background=\"?attr/selectableItemBackground\"\r\n            android:contentDescription=\"首页\"/>\r\n\r\n        <ImageButton\r\n            android:id=\"@+id/nav_favorite\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@drawable/ic_favorite\"\r\n            android:background=\"?attr/selectableItemBackground\"\r\n            android:contentDescription=\"收藏\"\r\n            android:layout_marginStart=\"16dp\"\r\n            tools:ignore=\"HardcodedText\" />\r\n\r\n        <ImageButton\r\n            android:id=\"@+id/nav_discover\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@drawable/ic_discover\"\r\n            android:background=\"?attr/selectableItemBackground\"\r\n            android:contentDescription=\"发现\"\r\n            android:layout_marginStart=\"16dp\"/>\r\n\r\n        <ImageButton\r\n            android:id=\"@+id/nav_location\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@drawable/ic_location\"\r\n            android:background=\"?attr/selectableItemBackground\"\r\n            android:contentDescription=\"位置\"\r\n            android:layout_marginStart=\"16dp\"\r\n            tools:ignore=\"HardcodedText\" />\r\n\r\n        <ImageButton\r\n            android:id=\"@+id/nav_calendar\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@drawable/ic_calendar\"\r\n            android:background=\"?attr/selectableItemBackground\"\r\n            android:contentDescription=\"日历\"\r\n            android:layout_marginStart=\"16dp\"\r\n            tools:ignore=\"HardcodedText\" />\r\n    </LinearLayout>-->\r\n    <!-- 底部导航 -->\r\n\r\n</RelativeLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/schedule_layout.xml b/app/src/main/res/layout/schedule_layout.xml
+--- a/app/src/main/res/layout/schedule_layout.xml	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ b/app/src/main/res/layout/schedule_layout.xml	(date 1720602766000)
+@@ -32,9 +32,10 @@
+             android:id="@+id/btnPrevMonth"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
++            tools:ignore="TouchTargetSizeCheck"
+             android:src="@drawable/rounded_rectangle"
+             android:background="?attr/selectableItemBackground"
+-            android:contentDescription="@string/prev_month"/>
++            android:contentDescription="@string/prev_month2"/>
+ 
+         <TextView
+             android:id="@+id/tvMonth"
+@@ -50,9 +51,10 @@
+             android:id="@+id/btnNextMonth"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
++            tools:ignore="TouchTargetSizeCheck"
+             android:src="@drawable/rounded_rectangle"
+             android:background="?attr/selectableItemBackground"
+-            android:contentDescription="@string/next_month"/>
++            android:contentDescription="@string/next_month2"/>
+     </LinearLayout>
+ 
+     <!-- 日历视图 -->
+Index: app/src/main/java/com/example/seniorcompanion/MenuActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.seniorcompanion;\r\nimport android.Manifest;\r\nimport android.content.Intent;\r\nimport android.content.pm.PackageManager;\r\nimport android.location.LocationListener;\r\nimport android.location.LocationManager;\r\nimport android.media.MediaRecorder;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.app.ActivityCompat;\r\nimport androidx.core.content.ContextCompat;\r\n\r\n\r\npublic class MenuActivity extends AppCompatActivity {\r\n\r\n    private static final int REQUEST_CALL_PHONE = 1;\r\n    private EditText phoneNumberEditText;\r\n    private Button callButton;\r\n    private LocationManager locationManager;\r\n    private LocationListener locationListener;\r\n    private MediaRecorder mediaRecorder;\r\n\r\n    // 按钮有关互动\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.menu_layout);\r\n\r\n        Button btnEmergency = findViewById(R.id.emergency_call_button);\r\n        btnEmergency.setOnClickListener(view -> makeEmergencyCall());\r\n\r\n        Button schedulebutton = (Button) findViewById(R.id.schedule_button);\r\n        schedulebutton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(MenuActivity.this,ScheduleActivity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button newsbutton = (Button) findViewById(R.id.news_button);\r\n        newsbutton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(MenuActivity.this,NewsActivity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button weatherbutton = (Button) findViewById(R.id.weather_button);\r\n        weatherbutton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(MenuActivity.this,WeatherActivity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button healthbutton = (Button) findViewById(R.id.health_button);\r\n        healthbutton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(MenuActivity.this,HealthActiviry.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button btnVoiceAnnouncements = findViewById(R.id.voice_broadcast_button);\r\n        btnVoiceAnnouncements.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n\r\n            }\r\n        });\r\n\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n    private void makeEmergencyCall() {\r\n        String emergencyNumber = \"112\"; // 紧急号码，例如 112 或 911\r\n        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {\r\n            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE);\r\n        } else {\r\n            startCall(emergencyNumber);\r\n        }\r\n    }\r\n\r\n    private void startCall(String phoneNumber) {\r\n        Intent callIntent = new Intent(Intent.ACTION_CALL);\r\n        callIntent.setData(Uri.parse(\"tel:\" + phoneNumber));\r\n        try {\r\n            startActivity(callIntent);\r\n        } catch (SecurityException e) {\r\n            Toast.makeText(this, \"拨打电话权限被拒绝\", Toast.LENGTH_SHORT).show();\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {\r\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults);\r\n        if (requestCode == REQUEST_CALL_PHONE) {\r\n            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {\r\n                makeEmergencyCall();\r\n            } else {\r\n                Toast.makeText(this, \"拨打电话权限被拒绝\", Toast.LENGTH_SHORT).show();\r\n            }\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/seniorcompanion/MenuActivity.java b/app/src/main/java/com/example/seniorcompanion/MenuActivity.java
+--- a/app/src/main/java/com/example/seniorcompanion/MenuActivity.java	(revision b522b4dc89eff09c81634fd4f076a48b9271d705)
++++ b/app/src/main/java/com/example/seniorcompanion/MenuActivity.java	(date 1720602766000)
+@@ -40,7 +40,7 @@
+         schedulebutton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-                Intent intent = new Intent(MenuActivity.this,ScheduleActivity.class);
++                Intent intent = new Intent(MenuActivity.this, MainActivity2.class);
+                 startActivity(intent);
+             }
+         });
