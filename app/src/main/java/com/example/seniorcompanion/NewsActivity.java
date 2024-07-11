@@ -1,21 +1,14 @@
 package com.example.seniorcompanion;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,7 +38,7 @@ public class NewsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news1);
+        setContentView(R.layout.activity_news);
       /*  //返回到主界面
         returnButton=findViewById(R.id.backbtn);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -75,21 +68,21 @@ public class NewsActivity extends AppCompatActivity {
         adapter=new NewsAdapter(this,dataList);
         lvnews.setAdapter(adapter);
         //点击列表项跳转界面
-        lvnews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       lvnews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Data data =dataList.get(i);
-//                Intent intent =new Intent(NewsActivity.this, .class);
-//                intent.putExtra("title",data.getTitle());
-//                intent.putExtra("authorname",data.getAuthor_name());
-//                intent.putExtra("date",data.getDate());
-//                intent.putExtra("picturl",data.getThumbnail_pic_S());
-//                intent.putExtra("contenturl",data.getUniquekey());
-//                startActivity(intent);
+                Intent intent =new Intent(NewsActivity.this, detailnewsActivity.class);
+                intent.putExtra("title",data.getTitle());
+                intent.putExtra("authorname",data.getAuthor_name());
+                intent.putExtra("date",data.getDate());
+                intent.putExtra("picturl",data.getThumbnail_pic_S());
+                intent.putExtra("contenturl",data.getUniquekey());
+                startActivity(intent);
             }
         });
         sendRequest();
-        //下拉刷新
+
 
     }
     private  void sendRequest()
@@ -99,15 +92,15 @@ public class NewsActivity extends AppCompatActivity {
             public void run() {
                 try {
                     OkHttpClient client =new OkHttpClient();
-                    Request request= new Request.Builder()
-                            .url("http://v.juhe.cn/toutiao/index?type=&page=&page_size=&is_filter=&key=ff9a2c858734996944d176b140a625b5")
-                            .build();
-                    Response response=null;
-                    response =client.newCall(request).execute();
-                    String responseData=response.body().string();
-                    Log.d("测试：", responseData);
-                    parseAndStoreData(responseData, NewsActivity.this);
-                    isRequestFinished=true;
+                      Request request= new Request.Builder()
+                        .url("http://v.juhe.cn/toutiao/index?type=&page=&page_size=&is_filter=&key=3e1703d3072d8dbe9213355661c5f714")
+                        .build();
+                Response response=null;
+                response =client.newCall(request).execute();
+                String responseData=response.body().string();
+                Log.d("测试：", responseData);
+                parseAndStoreData(responseData, NewsActivity.this);
+                isRequestFinished=true;
 
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -118,10 +111,6 @@ public class NewsActivity extends AppCompatActivity {
                     //更新Adapter,确保在ui线程中更新
                     runOnUiThread(() -> adapter.notifyDataSetChanged());
                 }
-                else{
-                    Toast.makeText(NewsActivity.this, "正在加载新闻，请稍后...", Toast.LENGTH_SHORT).show();
-                }
-
 
             }
         }).start();
@@ -130,7 +119,7 @@ public class NewsActivity extends AppCompatActivity {
     private void parseAndStoreData(String jsonData, Context context){
         Gson gson = new Gson();
         NewsApiresponse news = gson.fromJson(jsonData, NewsApiresponse.class);
-        List<Data> list =news.getResult().getData();
+       List<Data> list =news.getResult().getData();
         DatabaseHelper dbHelper=new DatabaseHelper(context);
         for(Data data :list)
         {

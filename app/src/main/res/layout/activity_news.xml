@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewsActivity"
+    tools:context=".News"
     android:background="@color/silver">
 
 
@@ -77,18 +77,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.699">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_x="92dp"
-            android:layout_y="55dp"
-            android:scrollbars="vertical"
-            android:maxLines="500"
-            android:ellipsize="end"
-            android:textSize="20dp"
-            android:text="TextView" />
-
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <ImageView

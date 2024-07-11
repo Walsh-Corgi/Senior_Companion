@@ -58,6 +58,7 @@ public class NewsAdapter extends BaseAdapter {
         tvAuth.setText(data.getAuthor_name());
         tvTime.setText(data.getDate());
         String pic_url=data.getThumbnail_pic_S();
+        setPic(ivpic,pic_url);
 
         return view;
 
